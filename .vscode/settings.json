@@ -1,0 +1,75 @@
+{
+    // Linux下記得去掉code runner和flags的--target，共四個。
+
+    "files.defaultLanguage": "cpp",                   // ctrl+N新建檔案後默認的語言
+    "editor.formatOnType": true,                      // 輸入時就進行格式化，默認觸發字符較少，分號可以觸發
+    "editor.snippetSuggestions": "top",               // snippets程式碼優先顯示補全
+    "code-runner.runInTerminal": true,                // 設置成false會在「輸出」中輸出，無法輸入
+    "code-runner.executorMap": {
+      "c": "cd $dir && clang $fileName -o $fileNameWithoutExt.exe -Wall -g -Og -static-libgcc -fcolor-diagnostics --target=x86_64-w64-mingw -std=c11 && $dir$fileNameWithoutExt",
+      "cpp": "cd $dir && clang++ $fileName -o $fileNameWithoutExt.exe -Wall -g -Og -static-libgcc -fcolor-diagnostics --target=x86_64-w64-mingw -std=c++17 && $dir$fileNameWithoutExt"
+    },                                                // 控制code runner命令；未注釋的僅適用於PowerShell（Win10默認），注釋掉的適用於cmd（win7默認）
+    // "c": "cd $dir && clang $fileName -o $fileNameWithoutExt.exe -Wall -g -O2 -static-libgcc --target=x86_64-w64-mingw -std=c11 && $dir$fileNameWithoutExt", 
+    // "cpp": "cd $dir && clang++ $fileName -o $fileNameWithoutExt.exe -Wall -g -O2 -static-libgcc --
+    "code-runner.saveFileBeforeRun": true,            // run code前保存
+    "code-runner.preserveFocus": true,                // 若為false，run code後(光標)會聚焦到終端上。如果需要頻繁輸入數據可設為false
+    "code-runner.clearPreviousOutput": false,         // 每次run code前清空屬於code runner的終端消息
+    //  "code-runner.ignoreSelection": true,          // 默認為false，效果是滑鼠選中一塊程式碼後可以單獨執行，但C是編譯型語言，不適合這樣用
+    "C_Cpp.clang_format_sortIncludes": true,          // 格式化時調整include的順序（按字母排序）
+    "C_Cpp.intelliSenseEngine": "Default",            // 可以為Default或Tag Parser，後者較老，功能較簡單。具體差別參考cpptools擴展文檔
+    "C_Cpp.errorSquiggles": "Disabled",               // 因為有clang的lint，所以關掉
+    "C_Cpp.autocomplete": "Disabled",                 // 因為有clang的補全，所以關掉
+    "clang.cflags": [                                 // 控制c語言靜態檢測的參數
+      "--target=x86_64-w64-mingw",
+      "-std=c11",
+      "-Wall"
+    ],
+    "clang.cxxflags": [                               // 控制c++靜態檢測時的參數
+      "--target=x86_64-w64-mingw",
+      "-std=c++17",
+      "-Wall"
+    ],
+    "clang.completion.enable": true,                  // 效果比cpptools要好
+    "files.associations": {
+      "iostream": "cpp",
+      "vector": "cpp",
+      "sstream": "cpp",
+      "array": "cpp",
+      "atomic": "cpp",
+      "*.tcc": "cpp",
+      "cctype": "cpp",
+      "clocale": "cpp",
+      "cmath": "cpp",
+      "cstdarg": "cpp",
+      "cstddef": "cpp",
+      "cstdint": "cpp",
+      "cstdio": "cpp",
+      "cstdlib": "cpp",
+      "cwchar": "cpp",
+      "cwctype": "cpp",
+      "deque": "cpp",
+      "unordered_map": "cpp",
+      "exception": "cpp",
+      "algorithm": "cpp",
+      "memory": "cpp",
+      "memory_resource": "cpp",
+      "optional": "cpp",
+      "string": "cpp",
+      "string_view": "cpp",
+      "system_error": "cpp",
+      "tuple": "cpp",
+      "type_traits": "cpp",
+      "utility": "cpp",
+      "fstream": "cpp",
+      "initializer_list": "cpp",
+      "iosfwd": "cpp",
+      "istream": "cpp",
+      "limits": "cpp",
+      "new": "cpp",
+      "ostream": "cpp",
+      "stdexcept": "cpp",
+      "streambuf": "cpp",
+      "typeinfo": "cpp",
+      "workbench.editor.scrollToSwitchTabs":"natural"
+    }
+  }

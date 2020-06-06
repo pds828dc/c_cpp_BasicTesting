@@ -1,0 +1,52 @@
+{
+    // 使用 IntelliSense 以得知可用的屬性。
+    // 暫留以檢視現有屬性的描述。
+    // 如需詳細資訊，請瀏覽: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "gcc.exe - 建置及偵錯使用中的檔案",
+            "type": "cppdbg",                                               // 建置(配置--中)類型，這裡只能為cppdbg
+            "request": "launch",                                            // 請求建置類型，可以為launch（啟動）或attach（附加）
+            "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",    // 將要進行Debug偵錯(調試--中)的程式的路徑
+            "args": [],                                                     // 程式偵錯時傳遞給程式的命令行參數，一般設為空即可
+            "stopAtEntry": false,                                           // 設為true時程式將暫停在程式入口處，相當於在main上打中斷點
+            "cwd": "${workspaceFolder}",                                    // 偵錯程式時的工作目錄，此為工作區文件夾；改成${fileDirname}可變為文件所在目錄
+            "environment": [],                                              // 環境變量
+            "externalConsole": false,                                       // 為true時使用單獨的cmd窗口，與其它IDE一致；2018年10月後設為false可調用VSC內置終端
+            //"internalConsoleOptions": "neverOpen",                        // 如果不設為neverOpen，調試時會跳到「調試控制台」選項卡，你應該不需要對gdb手動輸命令吧？
+            "MIMode": "gdb",                                                // 指定連接的Debugger，可以為gdb或lldb
+            "miDebuggerPath": "C:\\Program Files\\mingw-w64\\x86_64-8.1.0-posix-seh-rt_v6-rev0\\mingw64\\bin\\gdb.exe",  // Debugger路徑，Windows下後綴不能省略，Linux下則不要
+            "setupCommands": [
+                {
+                    "description": "啟用 gdb 的美化顯示",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "build_gcc"                                     // 偵錯開始前執行的任務，一般為編譯程序。與tasks.json的label相對應
+        },
+        
+        {
+            "name": "g++.exe - 建置及偵錯使用中的檔案",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:\\Program Files\\mingw-w64\\x86_64-8.1.0-posix-seh-rt_v6-rev0\\mingw64\\bin\\gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "啟用 gdb 的美化顯示",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "build"
+        }
+    ]
+}

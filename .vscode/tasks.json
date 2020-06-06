@@ -1,0 +1,56 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build_gcc",                                     // 任務名稱，與launch.json的preLaunchTask相對應
+      "command": "gcc",                                         // 要使用的編譯器，C++用clang++ or g++(MinGW-w32 in Win10)；如果編譯失敗，改成gcc或g++試試，還有問題那就是你其他地方有錯誤
+      "args": [
+        "-g",                                                   // 生成和debug有關的資訊
+        "${file}",
+        "-o",                                                   // 指定輸出文件名，不加該參數則默認輸出a.exe，Linux下默認a.out
+        "${fileDirname}/${fileBasenameNoExtension}.exe",        
+        "-Wall",                                                // 開啟額外警告
+        "-static-libgcc",                                       // 靜態連結libgcc
+        "-std=c++17"                                            // C++標準為c++17，或根據自己的需要進行修改
+        // ,"--target=x86_64-w64-mingw"                         // clang的默認target為msvc，不加這一條就會找不到頭文件；Linux下去掉這一條
+      ],                                                        // 編譯命令參數
+      "type": "shell",                                          // process是vsc把預定義變量和轉義解析後直接全部傳給command；shell相當於先打開shell再輸入命令，所以args還會經過shell再解析一遍
+      "group": {
+        "kind": "build",
+        "isDefault": true                                       // 設為false可做到一個tasks.json配置多個編譯指令，需要自己修改本文件，我這裡不多提
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",                                     // 在「終端」中顯示編譯信息的策略，可以為always，silent，never。具體參見VSC的文檔
+        "focus": false,                                         // 設為true後可以使執行task時焦點聚集在終端機，但對編譯c和c++來說，設為true沒有意義
+        "panel": "shared"                                       // 不同的文件的編譯信息共享一個終端面板
+      }
+      // ,"problemMatcher":"$gcc"                                // 如果你不使用clang（也可以把這行刪去)
+    },
+    {
+      "label": "build", 
+      "command": "g++", 
+      "args": [
+        "-g",
+        "${file}",
+        "-o",
+        "${fileDirname}/${fileBasenameNoExtension}.exe", 
+        "-Wall",
+        "-static-libgcc",
+        "-std=c++17" 
+      ], 
+      "type": "shell", 
+      "group": {
+        "kind": "build",
+        "isDefault": true 
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always", 
+        "focus": false, 
+        "panel": "shared" 
+      }
+      // "problemMatcher":"$gcc" 
+    }
+  ]
+}
