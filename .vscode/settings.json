@@ -71,5 +71,6 @@
       "streambuf": "cpp",
       "typeinfo": "cpp",
       "workbench.editor.scrollToSwitchTabs":"natural"
-    }
+    },
+    "python.pythonPath": "C:\\Users\\a2896\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe"
   }
