@@ -187,7 +187,7 @@ struct TreeNode* ConstructBinarySearchTreefromPreorderRecursion(int* preorder, i
 }
 struct TreeNode* bstFromPreorder(int* preorder, int preorderSize){
     int pos = 0;
-    int max = preorder[preorderSize - 1];
+    int max = INT_MAX;
     // return ConstructBinarySearchTreefromPreorderRecursion(preorder, 0, preorderSize);
     return ConstructBinarySearchTreefromPreorderRecursionV2(preorder, 0, preorderSize, max, &pos);
 }
@@ -241,10 +241,6 @@ int maxiumDepth(struct TreeNode* root){
 void TreeInsertInLevelOrder(TreeNode** root, queue* que, int value){
     TreeNode **neoNode;
     NodeCreate(neoNode, value);
-    if(NULL == (*root)->val){
-        root = neoNode;
-        queuePush(que, *root);
-    }
     if(NULL==que->front->node->left){
         que->front->node->left = *neoNode;
     }
@@ -256,7 +252,11 @@ void TreeInsertInLevelOrder(TreeNode** root, queue* que, int value){
 }
 queue* TreeBuildInLevelOrderBuild(TreeNode** root, int* arr, int arrSize){
     queue* que = queueCreate();
-    for (int i = 0; i < arrSize; i++){
+    TreeNode **neoNode;
+    NodeCreate(neoNode, arr[0]);
+    root = neoNode;
+    queuePush(que, *root);
+    for (int i = 1; i < arrSize; i++){
         TreeInsertInLevelOrder(root, que, arr[i]);
     }
     return que;
