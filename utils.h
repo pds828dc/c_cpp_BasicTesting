@@ -1,5 +1,4 @@
 #include<stdio.h>
-#include<iostream>
 #include<stdlib.h>
 
 void absf(double *x) {
@@ -9,7 +8,7 @@ void absf(double *x) {
     printf("little_end = %x\n", little_end);
     printf("((int *) x)= %p\n", ((int *) x));
     printf("* x= %x\n", *(int *)x ) ;
-    std::cout << "((int *) x) =" << ((int *) x) << "\n";
+    printf("((int *) x) =%d\n",((int *) x));
 
     printf("(((int *) x) + little_end) = %p\n", (((int *) x) + little_end));
     printf("0x7fffffff %x\n", 0x7fffffff);

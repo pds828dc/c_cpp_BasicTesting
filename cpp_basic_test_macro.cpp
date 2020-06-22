@@ -3,6 +3,7 @@
 #define MIN(a,b) ((a<b)?(a):(b))    //  巨集的本質是字詞替換而非真的創造一個函式
 #define SQUARE(x) (x)*(x)           //  在涉及運算時為了確保邏輯正確 需要用括號把輸入項包起來
 #define SQUARE_false(x) x*x         //  否則會出現以下錯誤
+#define SECOND_YEAR (60*60*24*365+60*60*6)UL
 
 int main(){
     int a=5, b=3, c=6, d=9;

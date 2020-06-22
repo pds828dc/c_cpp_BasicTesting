@@ -9,7 +9,7 @@ typedef struct stack_ptrChar{
     char **container;
 } stack_ptrChar;
 
-stack_ptrChar* createStackPtrChar(){
+stack_ptrChar* stack_ptrCharCreate(){
     stack_ptrChar *stack = (stack_ptrChar *)malloc(1 * sizeof(stack_ptrChar));
     stack->top = NULL;
     stack->capacity = 2;
@@ -19,7 +19,8 @@ stack_ptrChar* createStackPtrChar(){
 }
 void stack_ptrCharDoubleCapacity(stack_ptrChar* stack){
     stack->capacity *= 2;
-    stack->container = (char **)realloc(stack->container, stack->capacity);
+    stack->container = (char **)realloc(stack->container, stack->capacity*sizeof(char*));
+    stack->top = stack->container[stack->size - 1];
 }
 void stack_ptrCharPush(stack_ptrChar* stack, char* ptr){
     if(stack->size==stack->capacity){
@@ -30,16 +31,26 @@ void stack_ptrCharPush(stack_ptrChar* stack, char* ptr){
     stack->top = ptr;
 }
 void stack_ptrCharPop(stack_ptrChar* stack){
-    if(stack->size==0){
-        printf("Nothing can be poped");
-        return;
+    switch(stack->size){
+        case 1:
+            stack->size--;
+            break;
+        case 0:
+            printf("\nNothing can be poped");
+            break;
+        default:
+            stack->size--;
+            stack->top = stack->container[stack->size - 1];
     }
-    stack->size--;
-    stack->top = stack->container[stack->size - 1];
 }
 bool stack_ptrCharIsEmpty(stack_ptrChar* stack){
     if(stack->size){
         return true;
     }
     return false;
+}
+void stack_ptrCharDestroy(stack_ptrChar* stack){
+    free(stack->container);
+    free(stack);
+    stack = NULL;
 }
