@@ -20,5 +20,13 @@ int main(){
     for (int i = 0; i < 5; i++){
         ptrfunc[i]();
     }
+    int a[10] = {0, 1, 0, 1};
+    int i = 8;
+    if( (a[i]=10) && (i<4)){
+    // if( (i<4) && (a[i]=10) ){
+        printf("yes!!\n");
+    }else{
+        printf("nope%d",a[i]);
+    }
         return 0;
 }
